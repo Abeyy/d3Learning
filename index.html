@@ -121,6 +121,7 @@
                          .attr("height", 50)
                          // Now we need to seperate each rectange we created. The SVG draws from the top left, so they overlap.
                          // First argument is specific data element, second is the index
+                         // This logic is weird, but remember its the POSITION, which is why the logic works.
                          .attr("y", function(d, i) { return i * 75; })
     </script>
     
