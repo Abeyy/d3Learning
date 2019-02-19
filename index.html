@@ -91,8 +91,38 @@
                        .attr("stroke", "green")
                        .attr("stroke-width", 5) 
     </script>   
+    <hr>
     
+    <h1>Visualizing Data</h1>
     
+    <script>
+      var canvas = d3.select("body")
+        .append("svg")
+        .attr("width", 500)
+        .attr("height", 500);
+      
+      var dataArray = [20, 40, 50];
+      
+      // selectAll() selects all elements that we specify in the quotes.
+      // However, we dont have any rectanges. So what selectAll() does is return an empty array.
+      // But we can bind our data to it using data()
+      // Then, we use the enter method to return placeholders for each data element for which there are no corresponding elements.
+      // enter() is weird.
+      /* So we select all the rectangles, the data method binds to the placeholders, 
+         and the enter method creates placeholders for each and every data element.
+      */
+      var bars = canvas.selectAll("rect")
+                       .data(dataArray)
+                       .enter()
+                       // For each placeholder that enter creates, append a bar (rect)
+                         .append("rect")
+                         // d is the SPECIFIC data element
+                         .attr("width", function(d) { return d * 10;})
+                         .attr("height", 50)
+                         // Now we need to seperate each rectange we created. The SVG draws from the top left, so they overlap.
+                         // First argument is specific data element, second is the index
+                         .attr("y", function(d, i) { return i * 75; })
+    </script>
     
 </body>
 </html>
